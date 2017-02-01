@@ -58,8 +58,12 @@ apt-get -y install dphys-swapfile
 
 #    Install wifi drivers
 # The following packages should be installed : 
-#  
+# linux-firmware
 apt-get -y install linux-firmware
+#REBOOT
+
+# === PART IV ===
+
 #    Install ssh
 # The following packages should be installed : 
 # ncurses-term openssh-client openssh-sftp-server ssh-import-id
@@ -72,6 +76,12 @@ dpkg --configure -a
 
 #    Enable autologin
 perl -i -pe 's/.*/autologin=ubuntu/ if $.==3' /etc/lxdm/default.conf
+
+#    nomachine
+# The following packages should be installed :
+# git git-man liberror-perl
+wget http://download.nomachine.com/download/5.1/Linux/nomachine_5.1.62_1_armhf.deb #failed
+
 
 #    git
 # The following packages should be installed :
