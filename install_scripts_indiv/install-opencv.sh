@@ -83,6 +83,10 @@ log() {
 }
 
 main() {
+    # Personal improvements
+    mkdir ~/Programs
+    cd ~/Programs
+
     log "Installing build dependencies..."
     install_build_dependencies
     log "Downloading OpenCV packages..."
