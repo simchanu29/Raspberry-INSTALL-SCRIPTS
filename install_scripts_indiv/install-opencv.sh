@@ -64,7 +64,7 @@ build() {
           -D CMAKE_INSTALL_PREFIX="$PREFIX" \
           -D INSTALL_C_EXMAPLES=ON \
           -D INSTALL_PYTHON_EXAMPLES=ON \
-          -D OPENCV_EXTRA_MODULES_PATH="$HOME/$OPENCV_CONTRIB_PACKAGE_NAME/modules" \
+          -D OPENCV_EXTRA_MODULES_PATH="$HOME/Programs/$OPENCV_CONTRIB_PACKAGE_NAME/modules" \
           -D BUILD_EXAMPLES=ON \
           ..
     make ${MAKEFLAGS}
@@ -86,6 +86,8 @@ main() {
     # Personal improvements
     mkdir ~/Programs
     cd ~/Programs
+    pip3 install numpy
+    pip install numpy
 
     log "Installing build dependencies..."
     install_build_dependencies

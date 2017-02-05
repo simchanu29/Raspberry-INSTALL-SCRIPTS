@@ -18,6 +18,20 @@
 # - terminator
 # - LXDE desktop
 
+init() {
+    touch ~/Downloads/reboot-check
+    echo "0" > ~/Downloads/reboot-check
+}
+reboot() {
+   NUM=`cat ~/Downloads/reboot-check`
+   NUM=`expr ${NUM} + 1`
+   echo ${NUM} > ~/Downloads/reboot-check
+   reboot now
+}
+
+clean() {
+   rm
+}
 #    Manual steps
 # 1.Setup network connection (Ethernet REQUIRED)
 # 2.Move these scripts on a USB key on the freshly installed raspberry
@@ -25,30 +39,30 @@
 
 # === INIT ===
 # Create reboot check file
-
-# REBOOT
+init
 
 # === PART I ===
 
 #    Resize file system with parted
-./Part-I-Resize_filesystem.sh
+bash Part-I-Resize_filesystem.sh
 # REBOOT REQUIRED
 
 # === PART II ===
 
-./Part-II-Configure_bash_and_swap.sh
+bash Part-II-Configure_bash_and_swap.sh
 # REBOOT REQUIRED
 
 # === PART III ===
 
 #    Install wifi drivers
-./Part-III-Wifi_drivers.sh
+bash Part-III-Wifi_drivers.sh
 #REBOOT ?
 
 # === PART IV ===
 # Main installation
 
-./Part-IV.sh
+bash Part-IV.sh
 
 # === END ===
 # Remove the script from initrd
+clean
