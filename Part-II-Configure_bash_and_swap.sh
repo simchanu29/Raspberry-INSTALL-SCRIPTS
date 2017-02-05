@@ -4,6 +4,7 @@ resize2fs /dev/mmcblk0p2
 
 #    Init
 cd ~/Downloads
+mkdir ~/Programs
 mkdir First_install_files
 cd First_install_files
 apt-get update
