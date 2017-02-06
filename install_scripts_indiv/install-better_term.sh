@@ -5,6 +5,11 @@
 # git git-man liberror-perl
 apt-get -y install  git
 
+#    aptitude
+# The following packages should be installed :
+# aptitude
+apt-get -y install aptitude
+
 #    zsh
 # The following packages should be installed :
 # zsh zsh-common
