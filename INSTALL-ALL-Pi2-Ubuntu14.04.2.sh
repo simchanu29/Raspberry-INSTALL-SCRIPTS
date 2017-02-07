@@ -62,6 +62,7 @@ reboot
 # === PART I ===
 if REBOOTCHECK=="1"
  then
+    echo "INSTAL SCRIPT PART "REBOOTCHECK
     #    Resize file system with parted
     bash Part-I-Resize_filesystem.sh
     # REBOOT REQUIRED
@@ -72,6 +73,7 @@ fi
 
 if REBOOTCHECK=="2"
  then
+    echo "INSTAL SCRIPT PART "REBOOTCHECK
     bash Part-II-Configure_bash_and_swap.sh
     # REBOOT REQUIRED
     reboot
@@ -81,6 +83,7 @@ fi
 
 if REBOOTCHECK=="3"
  then
+    echo "INSTAL SCRIPT PART "REBOOTCHECK
     #    Install wifi drivers
     bash Part-III-Wifi_drivers.sh
     #REBOOT ?
@@ -91,6 +94,7 @@ fi
 
 if REBOOTCHECK=="4"
  then
+    echo "INSTAL SCRIPT PART "REBOOTCHECK
     #    Main installation
     bash Part-IV.sh
 fi
