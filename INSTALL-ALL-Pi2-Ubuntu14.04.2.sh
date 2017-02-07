@@ -18,11 +18,10 @@
 # - terminator
 # - LXDE desktop
 
-REBOOTCHECK=`cat ~/Downloads/reboot-check`
-
 init() {
     touch ~/Downloads/reboot-check
     echo "0" > ~/Downloads/reboot-check
+    echo "[INFO] reboot-check created"
 
     touch /etc/init.d/mystartup.sh
     echo "#!/bin/bash" >> /etc/init.d/mystartup.sh
@@ -52,12 +51,15 @@ clean() {
 # 2.Move these scripts on a USB key on the freshly installed raspberry
 # 3.Launch this script
 
-
+REBOOTCHECK="0"
 
 # === INIT ===
 # Create reboot check file and startup script
-init
-reboot
+if REBOOTCHECK=="1"
+    init
+    REBOOTCHECK=`cat ~/Downloads/reboot-check`
+    reboot
+fi
 
 # === PART I ===
 if REBOOTCHECK=="1"
