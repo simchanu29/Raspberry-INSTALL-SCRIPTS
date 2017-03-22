@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-#    Install Lubuntu
-bash install_scripts_indiv/install-lubuntu.sh
-
 #    Install remote control
 bash install_scripts_indiv/install-remote_control.sh
 

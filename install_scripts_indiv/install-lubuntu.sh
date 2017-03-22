@@ -2,7 +2,7 @@
 
 #    Install LXDE
 # LOADS of packages should be installed
-agyi lubuntu-desktop
+apt-get -y install lubuntu-desktop
 dpkg --configure -a
 
 #    Enable autologin
