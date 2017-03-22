@@ -24,8 +24,10 @@
 # - LXDE desktop
 
 init() {
+    # Removing anything from any previous iteration of this script
     rm /etc/init.d/mystartup.sh
     rm ~/Downloads/reboot-check
+
     mkdir ~/Downloads
     touch ~/Downloads/reboot-check
     echo "0" > ~/Downloads/reboot-check
