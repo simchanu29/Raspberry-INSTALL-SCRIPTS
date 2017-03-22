@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 # \n is used prevent multiple echo
-echo "p" && echo "d" && echo "2" && echo "n" && echo "p" && echo "2" && echo " " && echo " " && echo "p" && echo "w" && echo "q" | fdisk /dev/mmcblk0
+echo -e "p\nd\n2\nn\np\n2\n\n\np\nw\nq" | fdisk /dev/mmcblk0
+#echo "p" && echo "d" && echo "2" && echo "n" && echo "p" && echo "2" && echo " " && echo " " && echo "p" && echo "w" && echo "q" | fdisk /dev/mmcblk0
 #   p # print
 #   d # delete partition
 #   2 # partition number 2
