@@ -19,29 +19,47 @@
 # - LXDE desktop
 
 init() {
+    rm /etc/init.d/mystartup.sh
+    rm ~/Downloads/reboot-check
+    mkdir ~/Downloads
     touch ~/Downloads/reboot-check
     echo "0" > ~/Downloads/reboot-check
     echo "[INFO] reboot-check created"
 
-    touch /etc/init.d/mystartup.sh
-    echo "#!/bin/bash" >> /etc/init.d/mystartup.sh
-    echo "echo “Setting up customized environment…”" >> /etc/init.d/mystartup.sh
-    echo "bash ~/home/ubuntu/Raspberry-INSTALL-SCRIPTS/INSTALL-ALL-P12-Ubuntu14.04.2.sh"
+#    mkdir -pv /etc/systemd/system/getty@tty1.service.d/
+#    export ALP='/etc/systemd/system/getty@tty1/service/d/autologin.conf'
+#    touch $ALP
+#    echo '[Service]' >> $ALP
+#    echo 'ExecStart=' >> $ALP
+#    echo 'ExecStart=-/sbin/agetty --autologin ubuntu --noclear %I 38400 linux'
+#    systemctl enable getty@tty1.service
+     
+#    echo 'echo "ubuntu" | sudo -S bash ~/Raspberry-INSTALL-SCRIPTS/INSTALL-ALL-Pi2-Ubuntu14.04.2.sh' >> ~/.bashrc
 
-    chmod +x /etc/init.d/mystartup.sh
-    update-rc.d mystartup.sh defaults 100
+    #touch /etc/init.d/mystartup.sh
+    #echo "#!/bin/bash" >> /etc/init.d/mystartup.sh
+    #echo "echo "Setting up customized environment"" >> /etc/init.d/mystartup.sh
+    #echo "bash ~/Raspberry-INSTALL-SCRIPTS/INSTALL-ALL-Pi2-Ubuntu14.04.2.sh" >> /etc/init.d/mystartup.sh
+
+    #chmod +x /etc/init.d/mystartup.sh
+    #update-rc.d mystartup.sh defaults 0
+    echo "[INFO] startup script configured"
+    echo "[INFO] init done"
 }
 
 reboot() {
    NUM=`cat ~/Downloads/reboot-check`
    NUM=`expr ${NUM} + 1`
    echo ${NUM} > ~/Downloads/reboot-check
-   reboot now
+   echo "[INFO] Reboot number"$NUM
+   shutdown -r now
+   echo "[INFO] Rebooting"
 }
 
 clean() {
    rm /etc/init.d/mystartup.sh
    rm ~/Downloads/reboot-check
+   sed -i '$ d' ~/.basrc
 }
 
 
@@ -51,20 +69,20 @@ clean() {
 # 2.Move these scripts on a USB key on the freshly installed raspberry
 # 3.Launch this script
 
-REBOOTCHECK="0"
-
+export REBOOTCHECK="0"
+echo "REBOOT : "$REBOOTCHECK
 # === INIT ===
 # Create reboot check file and startup script
-if REBOOTCHECK=="1"
+if [ $REBOOTCHECK = "0" ]; then
     init
-    REBOOTCHECK=`cat ~/Downloads/reboot-check`
+    export REBOOTCHECK=`cat ~/Downloads/reboot-check`
+    echo "REBOOT : "$REBOOTCHECK
     reboot
 fi
 
 # === PART I ===
-if REBOOTCHECK=="1"
- then
-    echo "INSTAL SCRIPT PART "REBOOTCHECK
+if [ $REBOOTCHECK = "1" ]; then
+    echo "INSTAL SCRIPT PART "$REBOOTCHECK
     #    Resize file system with parted
     bash Part-I-Resize_filesystem.sh
     # REBOOT REQUIRED
@@ -73,9 +91,8 @@ fi
 
 # === PART II ===
 
-if REBOOTCHECK=="2"
- then
-    echo "INSTAL SCRIPT PART "REBOOTCHECK
+if [ $REBOOTCHECK = "2" ]; then
+    echo "INSTAL SCRIPT PART "$REBOOTCHECK
     bash Part-II-Configure_bash_and_swap.sh
     # REBOOT REQUIRED
     reboot
@@ -83,9 +100,8 @@ fi
 
 # === PART III ===
 
-if REBOOTCHECK=="3"
- then
-    echo "INSTAL SCRIPT PART "REBOOTCHECK
+if [$REBOOTCHECK == "3"]; then
+    echo "INSTAL SCRIPT PART "$REBOOTCHECK
     #    Install wifi drivers
     bash Part-III-Wifi_drivers.sh
     #REBOOT ?
@@ -94,13 +110,10 @@ fi
 
 # === PART IV ===
 
-if REBOOTCHECK=="4"
- then
-    echo "INSTAL SCRIPT PART "REBOOTCHECK
+if [ $REBOOTCHECK = "4" ]; then
+    echo "INSTAL SCRIPT PART "$REBOOTCHECK
     #    Main installation
     bash Part-IV.sh
-fi
 
-# === END ===
-# Remove the script from initrd
-clean
+    clean
+fi
