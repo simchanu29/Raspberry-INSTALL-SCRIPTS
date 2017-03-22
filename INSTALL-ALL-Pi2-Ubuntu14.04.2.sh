@@ -4,6 +4,10 @@
 
 # It should be ok as well for other iterations of ubuntu
 # In our case the best should be to use archlinux and add later a x server or use Lubuntu for ARM
+
+# ENSTA Bretagne : see http://www.ensta-bretagne.fr/lebars/Share/Ubuntu.txt
+# modify and reboot
+
 # RUN the script wit sudo !
 
 # Installed by this script  :
@@ -25,12 +29,16 @@ init() {
     echo "0" > ~/Downloads/reboot-check
 
     touch /etc/init.d/mystartup.sh
+    chmod 755 /etc/init.d/mystartup.sh
     echo "#!/bin/bash" >> /etc/init.d/mystartup.sh
     echo "echo “Setting up customized environment…”" >> /etc/init.d/mystartup.sh
     echo "bash ~/home/ubuntu/Raspberry-INSTALL-SCRIPTS/INSTALL-ALL-P12-Ubuntu14.04.2.sh"
 
     chmod +x /etc/init.d/mystartup.sh
     update-rc.d mystartup.sh defaults 100
+
+    apt-get -y update
+    apt-get -y upgrade
 }
 
 reboot() {
@@ -44,8 +52,6 @@ clean() {
    rm /etc/init.d/mystartup.sh
    rm ~/Downloads/reboot-check
 }
-
-
 
 #    Manual steps
 # 1.Setup network connection (Ethernet REQUIRED)
