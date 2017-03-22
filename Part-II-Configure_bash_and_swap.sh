@@ -19,3 +19,5 @@ source ~/.bashrc
 # The following packages should be installed :
 # dphys-swapfile
 apt-get -y install dphys-swapfile
+# Si il y a des problèmes utiliser dphys-swapfile uninstall puis dphys-swapfile setup
+# Si il y a un problème c'est que la
