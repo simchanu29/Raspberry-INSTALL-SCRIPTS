@@ -6,6 +6,9 @@ resize2fs /dev/mmcblk0p2
 cd
 mkdir ~/Downloads
 mkdir ~/Programs
+chown ubuntu ~/Downloads
+chown ubuntu ~/Programs
+
 cd ~/Downloads
 mkdir First_install_files
 cd First_install_files
