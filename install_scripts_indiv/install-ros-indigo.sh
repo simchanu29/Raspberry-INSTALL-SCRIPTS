@@ -13,7 +13,7 @@ apt-get update
 apt-get -y install  ros-indigo-desktop
 	# test 1 : echoué sur Mate car broken packages.
 	# test 2 : échoué sur Ubuntu 16.04 car broken packages
-    # test 3 : réussi sur Ubuntu 14.04
+    # test 3 : réussi sur Ubuntu 14.04.5
 #agyi ros-indigo-ros-base
 	# test 1 : échoué sur Ubuntu 16.04 car broken packages
 
@@ -21,6 +21,7 @@ apt-get -y install  ros-indigo-desktop
 apt-get -y install python-rosdep
 rosdep init
 rosdep update
+rosdep fix-permissions
 
 # Environement setup
 echo "source /opt/ros/indigo/setup.bash" >> ~/.bashrc
