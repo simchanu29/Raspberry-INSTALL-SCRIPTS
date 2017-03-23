@@ -1,8 +1,18 @@
 #!/usr/bin/env bash
 
-#    Resize file system with parted
-parted /dev/mmcblk0 -s p
-parted /dev/mmcblk0 -s rm 2
-parted /dev/mmcblk0 -s mkpart p ext4 1 -1
-parted /dev/mmcblk0 -s p
+# \n is used prevent multiple echo
+echo -e "p\nd\n2\nn\np\n2\n\n\np\nw\nq" | fdisk /dev/mmcblk0
+#echo "p" && echo "d" && echo "2" && echo "n" && echo "p" && echo "2" && echo " " && echo " " && echo "p" && echo "w" && echo "q" | fdisk /dev/mmcblk0
+#   p # print
+#   d # delete partition
+#   2 # partition number 2
+#   n # new partition
+#   p # primary partition
+#   2 # partition number 2
+#    # default
+#    # default
+#   p # print
+#   w # write changes
+#   q # quit
+
 # REBOOT REQUIRED
