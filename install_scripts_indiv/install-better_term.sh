@@ -4,6 +4,8 @@
 # The following packages should be installed :
 # git git-man liberror-perl
 apt-get -y install  git
+git config --global user.email "myraspberry@ensta-bretagne.org"
+git config --global user.name "myraspberry"
 
 #    aptitude
 # The following packages should be installed :
