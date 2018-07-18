@@ -80,7 +80,7 @@ function task_handler () {
         if [ "$EXEC" = "$INSTALL" ]; then echo ""; create_workspace; fi
     ;;
     "shell_init")
-        if [ "$EXEC" = "$INSTALL" ]; then echo ""; vsmarth_init; fi
+        if [ "$EXEC" = "$INSTALL" ]; then echo ""; xxx_init; fi
         echo "Initialize environnement variables for ROS"
     ;;
     "gitmodules_init")
