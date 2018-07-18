@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+####
+# 
+#   /!\  This is an example and does not work by itself  /!\
+#  
+####
+
 # Global variables
 WS_ROOT=$PWD
 INSTALL_CAN="0"
@@ -51,13 +57,13 @@ function install_ws_dep () {
 
 function help_text () {
     echo ""
-    echo "vsmarth_install [flag [options]]"
+    echo "xxx_install [flag [options]]"
     echo "Arguments"
     echo "-h : show help and exit"
     echo "-i : install additional feature"
     echo "    can : set up can interface"
     echo ""
-    echo "example : vsmarth_install -i can"
+    echo "example : xxx_install -i can"
     echo ""
 }
 
